@@ -10,12 +10,6 @@ const randomAccuracy = (min, max) => {
     return Math.random() * (max - min) + min;
 }
 
-// initializing variables
-
-let currentTurn;
-let shipsRemaining;
-let aliensArray = [];
-
 // creating ship objects
 
 const humanShip = {
@@ -39,6 +33,12 @@ const humanShip = {
         }
     }
 }
+
+// initializing array to hold alien ships
+
+let aliensArray = [];
+
+// creating class
 
 class alienShip {
     constructor() {
@@ -64,6 +64,8 @@ class alienShip {
     }
 }
 
+// generating the ships
+
 const genAliens = (x) => {
     for (i = 0; i < x; i++) {
         aliensArray.push(new alienShip());
@@ -71,6 +73,8 @@ const genAliens = (x) => {
 }
 
 genAliens(6);
+
+// function to start the game
 
 const begin = () => {
     const userInput = prompt('You have encountered a fleet of alien vessels, what is your decision Captain?', 'Attack / Retreat');
@@ -85,6 +89,8 @@ const begin = () => {
     }
 }
 
+// this one is self explanatory
+
 function fight() {
     if (gameObject.currentTurn === humanShip) {
         humanShip.attack(gameObject.currentTarget);
@@ -93,22 +99,7 @@ function fight() {
     }
 }
 
-
-// const isGameOver = () => {  /// old code ... replaced with below function
-//     if (aliensArray.length === 0) {
-//         console.log('congrats!  you have literally saved the planet.  you can relax now.');
-//         $('body').text('YAYYYYYYYY');
-//     } else if (humanShip.hull <= 0) {
-//         console.log('welp, you died.  nice try I guess?')
-//         const userInput = prompt('Do you want to retry?', 'yes / No');
-//         if (userInput.toLocaleLowerCase() === 'yes' || userInput.toLocaleLowerCase() === 'y') {
-//             begin();
-//         } else if (userInput.toLocaleLowerCase() === 'no' || userInput.toLocaleLowerCase() === 'n') {
-//             alert('okay thanks');
-//             $('body').hide('slow');
-//         }
-//     }   
-// }
+// big function that runs after every attack turn and decides whats good
 
 const isFightOver = () => {
     if (aliensArray[0].hull <= 0 && aliensArray.length !== 0) {
@@ -147,13 +138,15 @@ const isFightOver = () => {
     }
 }
 
+// object that holds game data as it changes
 
 const gameObject = {
     currentTurn: humanShip,
     currentTarget: aliensArray[0],
-    shipsRemaining: 6,
-    gameOver: false,
+    shipsRemaining: 6
 }
+
+// jquery to start game
 
 $(() => {
     $('#startButton').on('click', (event) => {
