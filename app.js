@@ -14,7 +14,6 @@ const randomAccuracy = (min, max) => {
 
 let currentTurn;
 let shipsRemaining;
-let gameOver;
 let aliensArray = [];
 
 // creating ship objects
