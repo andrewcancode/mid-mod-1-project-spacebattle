@@ -10,13 +10,14 @@ const randomAccuracy = (min, max) => {
     return Math.random() * (max - min) + min;
 }
 
-// ship objects
+// initializing variables
 
 let currentTurn;
 let shipsRemaining;
 let gameOver;
 let aliensArray = [];
-// let currentTarget;
+
+// creating ship objects
 
 const humanShip = {
     name: 'USS Schwarzenegger',
@@ -54,7 +55,6 @@ class alienShip {
                 gameObject.currentTurn = humanShip;
                 gameObject.currentTarget = aliensArray[0];
                 isFightOver();
-                // gameObject.currentTurn = attackTarget;
             } else {
                 console.log('Luckily these aliens can\'t aim, their attack missed');
                 gameObject.currentTurn = humanShip;
@@ -95,7 +95,7 @@ function fight() {
 }
 
 
-// const isGameOver = () => {
+// const isGameOver = () => {  /// old code ... replaced with below function
 //     if (aliensArray.length === 0) {
 //         console.log('congrats!  you have literally saved the planet.  you can relax now.');
 //         $('body').text('YAYYYYYYYY');
@@ -134,9 +134,6 @@ const isFightOver = () => {
             console.log('congrats!  you have literally saved the planet.  you can relax now.');
             $('body').text('YAYYYYYYYY');
         }
-    // } else if (aliensArray.length === 0) {
-    //     console.log('congrats!  you have literally saved the planet.  you can relax now.');
-    //     $('body').text('YAYYYYYYYY');
     } else if (humanShip.hull <= 0) {
         console.log('welp, you died.  nice try I guess?')
         const userInput = prompt('Do you want to retry?', 'yes / No');
@@ -147,11 +144,7 @@ const isFightOver = () => {
             $('body').hide('slow');
         }
     } else if (aliensArray[0].hull > 0) {
-        // gameObject.currentTurn = aliensArray[0];
-        // gameObject.currentTarget = humanShip;
         fight();
-        // gameObject.currentTurn = humanShip;
-        // gameObject.currentTarget = aliensArray[0];
     }
 }
 
