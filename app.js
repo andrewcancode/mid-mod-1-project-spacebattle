@@ -21,7 +21,7 @@ const humanShip = {
         console.log('Targetting the alien ship with ze lasers!!');
         if (Math.random() < humanShip.accuracy) {
             attackTarget.hull -= humanShip.firepower;
-            console.log(`Success!  You\'ve hit the enemy ship for ${humanShip.firepower} damage!  They have ${attackTarget.hull} health left.`);
+            console.log(`%c Success!  You\'ve hit the enemy ship for ${humanShip.firepower} damage!  They have ${attackTarget.hull} health left.`, 'font-size: 20px; font-style: italic; background: azure; border: 1px solid blue');
             gameObject.currentTurn = aliensArray[0];
             gameObject.currentTarget = humanShip;
             isFightOver();
@@ -50,7 +50,7 @@ class alienShip {
             console.log('ahahahha you puny humans we will DESTROY you!!!')
             if (Math.random() < this.accuracy) {
                 attackTarget.hull -= this.firepower;
-                console.log(`You have been hit for ${this.firepower} damage!  You have ${attackTarget.hull} health left.`);
+                console.log(`%c You have been hit for ${this.firepower} damage!  You have ${attackTarget.hull} health left.`, 'font-size: 24px; color: red; font-style: bold; background: azure; border: 1px solid grey');
                 gameObject.currentTurn = humanShip;
                 gameObject.currentTarget = aliensArray[0];
                 isFightOver();
@@ -107,9 +107,9 @@ const isFightOver = () => {
         gameObject.shipsRemaining = aliensArray.length;
         gameObject.currentTarget = aliensArray[0];
         gameObject.currentTurn = humanShip;
-        console.log('***BOOOM*** **** FIRE **** SPARKS **** WOW ****')
+        console.log('%c ***BOOOM*** **** FIRE **** SPARKS **** WOW ****', 'font-size: 40px; font-style: bold; color: firebrick; background-color: khaki; border: 1px solid grey')
         console.log('Congrats, you killed the enemy ship!  But wait..theres more!!');
-        console.log(`Current health: ${humanShip.hull}, enemy ships remaining: ${gameObject.shipsRemaining}`);
+        console.log(`%c Current health: ${humanShip.hull}, enemy ships remaining: ${gameObject.shipsRemaining}`, 'color: green; font-size 16px');
         if (aliensArray.length !== 0) {
             const userInput = prompt('Attack the next ship or retreat?', 'Attack / Retreat');
             if (userInput.toLocaleLowerCase() === 'attack') {
@@ -121,11 +121,11 @@ const isFightOver = () => {
                 isFightOver();
             }
         } else if (aliensArray.length === 0) {
-            console.log('congrats!  you have literally saved the planet.  you can relax now.');
-            $('body').text('YAYYYYYYYY');
+            console.log('%c congrats!  you have literally saved the planet.  you can relax now.', 'font-size: 40px; font-style: bold; color: firebrick; background-color: khaki; border: 1px solid grey');
+            $('body').text('YAYYYYYYYY!!  THE EARTH IS SAVED!!!!');
         }
     } else if (humanShip.hull <= 0) {
-        console.log('welp, you died.  nice try I guess?')
+        console.log('%cwelp, you died.  nice try I guess?', 'color: red; font-size: 16px')
         const userInput = prompt('Do you want to retry?', 'yes / No');
         if (userInput.toLocaleLowerCase() === 'yes' || userInput.toLocaleLowerCase() === 'y') {
             begin();
