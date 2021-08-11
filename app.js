@@ -27,7 +27,7 @@ const humanShip = {
         console.log('Targetting the alien ship with ze lasers!!');
         if (Math.random() < humanShip.accuracy) {
             attackTarget.hull -= humanShip.firepower;
-            console.log(`Success!  You\'ve hit the enemy ship for ${humanShip.firepower} damage!  They have ${attackTarget.hull} health left.`);
+            console.log(`Success!  You\'ve hit the enemy ship for ${this.firepower} damage!  They have ${attackTarget.hull} health left.`);
             gameObject.currentTurn = aliensArray[0];
             gameObject.currentTarget = humanShip;
             isFightOver();
